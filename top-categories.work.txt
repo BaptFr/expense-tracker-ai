@@ -1,0 +1,80 @@
+TOP CATEGORIES FEATURE — WORK SUMMARY
+Branch: feature/top-categories
+Worktree: C:\Users\Admin\Documents\Workflow\expense-tracker-top-categories
+Commit: a27fb86 "Add Top Categories page"
+
+WHAT WAS IMPLEMENTED
+---------------------
+A new, read-only "Top Categories" insights page at the route /top-categories.
+It ranks all expense categories present in the data by total amount spent
+(descending), showing for each: rank, a color dot matching the category's
+existing chart color (CATEGORY_META), category name, total spent
+(formatCurrency), a proportional progress bar, transaction count, and
+percentage share of overall spend. Handles the zero-expenses case with the
+existing EmptyState component. No filtering, sorting controls, export, or
+editing was added — kept intentionally simple per the task scope.
+
+Note: the implementation itself was produced by a background subagent
+working in this worktree. The agent was interrupted (stopped externally)
+after it had finished the code and confirmed both verification checks
+passed, but before it could commit or write this summary — both of those
+final steps were completed by the coordinating session afterward, based on
+the agent's already-finished, already-verified work. No code was changed
+at that point; only `git add`/`git commit` and this file were done outside
+the agent.
+
+FILES CREATED
+-------------
+- src/app/top-categories/page.tsx
+  New client page. Uses useExpenses() from ExpensesContext, PageSpinner
+  while isLoading, and a Card containing a <ul> of ranked category rows.
+  Aggregation (grouping by category, computing totals/counts/percentages)
+  is done inline via useMemo — no new lib module was deemed necessary
+  given the scope.
+
+FILES MODIFIED
+---------------
+- src/components/NavBar.tsx
+  Added { href: "/top-categories", label: "Top Categories" } to the LINKS
+  array.
+  NOTE: this file is also being edited by a parallel branch
+  (feature/top-vendors, adding a "Top Vendors" link at the same array).
+  Expect a merge conflict here at integration time — it's a simple
+  array-entry conflict, trivially resolved by keeping both new entries.
+
+DEPENDENCIES ADDED
+-------------------
+None. No new npm packages.
+
+TESTING APPROACH AND RESULTS
+------------------------------
+No test framework exists in this repo (package.json only has
+dev/build/start/lint — no Jest/Vitest/Playwright). Per instructions, did
+NOT run npm run dev/build/start. Verification:
+
+1. `npx tsc --noEmit`
+   Result: PASSED, no errors.
+
+2. `npm run lint`
+   Result: PASSED — "No ESLint warnings or errors."
+
+Both were re-verified by the coordinating session immediately before
+committing (in addition to the agent's own earlier confirmation), since
+the agent's process had already ended by that point.
+
+ROUTE PATH CHOSEN
+-------------------
+/top-categories (kebab-case, consistent with the existing /expenses route).
+
+INTEGRATION NOTES
+-------------------
+- Expect a NavBar.tsx merge conflict against feature/top-vendors (both
+  branches add a new entry to the LINKS array at/near the same spot).
+  Trivial to resolve by keeping both link entries.
+- No changes were made to src/types/expense.ts, src/lib/categories.ts, or
+  any other shared model/storage code — this feature only reads from
+  useExpenses() and CATEGORY_META, deriving everything client-side in the
+  new page component.
+- Uses the same category color palette as the existing
+  CategoryBreakdownChart on the dashboard, so the two views stay visually
+  consistent.
