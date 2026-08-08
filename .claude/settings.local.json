@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(echo \"started with pid $!\")",
+      "Bash(sleep 4 && cat /tmp/nextdev.log)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000)",
+      "Read(//c/Users/Admin/AppData/Local/Temp/claude/**)",
+      "Bash(npx playwright *)",
+      "Bash(chromium-cli --help)",
+      "Bash(npm root *)",
+      "Bash(ls \"C:\\\\nvm4w\\\\nodejs\\\\node_modules\" | grep -i playwright)",
+      "Read(//c/Program Files/nvm/v22.13.1/node_modules/**)",
+      "Bash(find \"$HOME/AppData/Local/npm-cache/_npx\" -maxdepth 3 -iname \"playwright*\" 2>/dev/null | head -20)",
+      "Read(//c/Users/Admin/AppData/Local/npm-cache/_npx/**)"
+    ]
+  }
+}

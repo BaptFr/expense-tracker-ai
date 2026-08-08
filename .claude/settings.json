@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Write",
+      "Edit",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 5612 //F)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001)",
+      "Bash(node test-export-v2.js)",
+      "Bash(node -e ' *)",
+      "Bash(node render-pdf.js)",
+      "Bash(taskkill //PID 11640 //F)",
+      "Bash(taskkill //PID 16800 //F)",
+      "Bash(node test-export-v3.js)",
+      "Bash(taskkill //PID 20276 //F)"
+    ]
+  }
+}
