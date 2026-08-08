@@ -12,3 +12,5 @@
 .idea/
 dist/
 build/
+settings.json
+settings.json.local
