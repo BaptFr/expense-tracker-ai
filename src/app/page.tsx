@@ -14,18 +14,24 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PageSpinner } from "@/components/ui/Spinner";
-import { exportExpensesToCsv } from "@/lib/utils";
+import { ExportDrawer } from "@/components/export/ExportDrawer";
 import { ExpenseInput } from "@/types/expense";
 
 export default function DashboardPage() {
   const { expenses, isLoading, addExpense } = useExpenses();
   const { showToast } = useToast();
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showExportDrawer, setShowExportDrawer] = useState(false);
 
   function handleAdd(input: ExpenseInput) {
     addExpense(input);
     setShowAddModal(false);
     showToast("Expense added.");
+  }
+
+  function handleExported(count: number, format: string) {
+    setShowExportDrawer(false);
+    showToast(`Exported ${count} record${count === 1 ? "" : "s"} as ${format.toUpperCase()}.`);
   }
 
   if (isLoading) return <PageSpinner />;
@@ -43,8 +49,11 @@ export default function DashboardPage() {
           <p className="mt-0.5 text-sm text-[#52514e]">A snapshot of your spending.</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="secondary" onClick={() => exportExpensesToCsv(expenses)}>
-            Export Data
+          <Button variant="secondary" onClick={() => setShowExportDrawer(true)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Export data
           </Button>
           <Button onClick={() => setShowAddModal(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -93,6 +102,14 @@ export default function DashboardPage() {
         <Modal title="Add expense" onClose={() => setShowAddModal(false)}>
           <ExpenseForm onSubmit={handleAdd} onCancel={() => setShowAddModal(false)} />
         </Modal>
+      )}
+
+      {showExportDrawer && (
+        <ExportDrawer
+          expenses={expenses}
+          onClose={() => setShowExportDrawer(false)}
+          onExported={handleExported}
+        />
       )}
     </div>
   );
