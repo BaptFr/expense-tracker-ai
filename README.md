@@ -5,8 +5,9 @@ Un tracker de dépenses personnelles, 100 % côté client et pour moi une mise e
 **🇫🇷 [Français](#francais) · 🇬🇧 [English](#english)**
 
 <div align="center">
-  <img src="https://i.imgur.com/asMtnkB.gif" width="500px" />
+<img src="https://i.imgur.com/pZclztw.gif" width="1000px"/>
 </div>
+
 ---
 
 <a id="francais"></a>
