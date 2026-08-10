@@ -93,21 +93,20 @@ export default function TopVendorsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top marchands</h1>
+        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top dépenses</h1>
         <p className="mt-0.5 text-sm text-[#52514e]">
-          Où va votre argent, classé par dépense totale. Les marchands sont
-          regroupés par description de dépense.
+          Où va votre argent ? Le top dépenses classées par montant et pourcentage sur les dépenses totales. rettouvez les codes couleurs des catégories de dépenses.
         </p>
       </div>
 
       <Card
-        title={`Top ${topVendors.length} marchand${topVendors.length === 1 ? "" : "s"}`}
-        subtitle={expenses.length > 0 ? `Sur ${vendors.length} marchand${vendors.length === 1 ? "" : "s"} unique${vendors.length === 1 ? "" : "s"}` : undefined}
+        title={`Top ${topVendors.length} dépense${topVendors.length === 1 ? "" : "s"}`}
+        subtitle={expenses.length > 0 ? `Sur ${vendors.length} dépense${vendors.length === 1 ? "" : "s"} au total` : undefined}
       >
         {topVendors.length === 0 ? (
           <EmptyState
             title="Aucune dépense pour le moment"
-            description="Ajoutez des dépenses pour voir avec quels marchands vous dépensez le plus."
+            description="Ajoutez des dépenses pour voir lesquelles sont les plus coûteuse ainsi que leurs catégories."
           />
         ) : (
           <ul className="divide-y divide-[#f0efec]">

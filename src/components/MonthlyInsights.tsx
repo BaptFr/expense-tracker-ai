@@ -94,9 +94,9 @@ export function MonthlyInsights({ expenses }: MonthlyInsightsProps) {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h2 className="text-sm font-semibold text-[#0b0b0b]">Série budget</h2>
-            <p className="mt-0.5 max-w-xs text-xs text-[#898781]">
-              Jours consécutifs de dépenses à ou sous votre moyenne quotidienne récente
-              {streak.averageDailySpend > 0 ? ` de ${formatCurrency(streak.averageDailySpend)}` : ""}.
+            <p className="mt-0.5 text-xs text-[#898781]">
+              Jours consécutifs de dépenses égales ou sous votre moyenne quotidienne récente
+              {streak.averageDailySpend > 0 ? ` (${formatCurrency(streak.averageDailySpend)})` : " (Inconnue pour l'instant)"}.
             </p>
           </div>
           <div className="text-right">

@@ -8,7 +8,7 @@ const LINKS = [
   { href: "/expenses", label: "Dépenses" },
   { href: "/insights", label: "Aperçu" },
   { href: "/top-categories", label: "Top catégories" },
-  { href: "/top-vendors", label: "Top marchands" },
+  { href: "/top-vendors", label: "Top dépenses" },
   { href: "/export", label: "Export" },
 ];
 
