@@ -55,6 +55,19 @@ export default function DashboardPage() {
             </svg>
             Export data
           </Button>
+          <Link
+            href="/export"
+            className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-2 text-sm font-medium text-[#0b0b0b] ring-1 ring-inset ring-[#c3c2b7] transition-colors hover:bg-[#f9f9f7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2a78d6]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path
+                d="M7 18a4 4 0 1 1 .7-7.94A5 5 0 0 1 17 12h.5a3.5 3.5 0 0 1 0 7H7Z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Export Center
+          </Link>
           <Button onClick={() => setShowAddModal(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 5v14M5 12h14" strokeLinecap="round" />
