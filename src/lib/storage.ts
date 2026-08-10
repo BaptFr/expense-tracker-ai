@@ -18,21 +18,21 @@ function isoDaysAgo(days: number): string {
 
 function buildSampleExpenses(): Expense[] {
   const samples: Array<[number, number, Expense["category"], string]> = [
-    [1, 42.5, "Food", "Groceries at Trader Joe's"],
-    [3, 12.99, "Entertainment", "Movie streaming subscription"],
-    [4, 65.0, "Transportation", "Gas fill-up"],
-    [6, 89.2, "Shopping", "New running shoes"],
-    [9, 120.0, "Bills", "Electricity bill"],
-    [12, 8.75, "Food", "Coffee and bagel"],
-    [15, 34.6, "Transportation", "Rideshare to airport"],
-    [20, 55.0, "Entertainment", "Concert tickets"],
-    [25, 200.0, "Bills", "Internet & phone"],
-    [33, 27.4, "Food", "Lunch with coworkers"],
-    [40, 150.0, "Shopping", "Winter jacket"],
-    [48, 19.99, "Other", "Donation"],
-    [55, 75.3, "Food", "Weekly groceries"],
-    [62, 45.0, "Transportation", "Metro card top-up"],
-    [70, 300.0, "Bills", "Rent utilities share"],
+    [1, 42.5, "Food", "Courses"],
+    [3, 12.99, "Entertainment", "Abonnement streaming vidéo"],
+    [4, 65.0, "Transportation", "Plein d'essence"],
+    [6, 89.2, "Shopping", "Nouvelles chaussures de course"],
+    [9, 120.0, "Bills", "Facture d'électricité"],
+    [12, 8.75, "Food", "Cafés et croissants"],
+    [15, 34.6, "Transportation", "VTC aéroport"],
+    [20, 55.0, "Entertainment", "Billets de concert"],
+    [25, 200.0, "Bills", "Internet et téléphone"],
+    [33, 27.4, "Food", "Déjeuner avec des collègues"],
+    [40, 150.0, "Shopping", "Manteau d'hiver"],
+    [48, 19.99, "Other", "Don"],
+    [55, 75.3, "Food", "Courses de la semaine"],
+    [62, 45.0, "Transportation", "Rechargement carte de transport"],
+    [70, 300.0, "Bills", "Quote-part charges locatives"],
   ];
 
   return samples.map(([daysAgo, amount, category, description]) => ({

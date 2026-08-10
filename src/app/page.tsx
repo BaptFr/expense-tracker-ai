@@ -26,12 +26,12 @@ export default function DashboardPage() {
   function handleAdd(input: ExpenseInput) {
     addExpense(input);
     setShowAddModal(false);
-    showToast("Expense added.");
+    showToast("Dépense ajoutée.");
   }
 
   function handleExported(count: number, format: string) {
     setShowExportDrawer(false);
-    showToast(`Exported ${count} record${count === 1 ? "" : "s"} as ${format.toUpperCase()}.`);
+    showToast(`${count} ligne${count === 1 ? "" : "s"} exportée${count === 1 ? "" : "s"} au format ${format.toUpperCase()}.`);
   }
 
   if (isLoading) return <PageSpinner />;
@@ -45,15 +45,15 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-[#0b0b0b]">Dashboard</h1>
-          <p className="mt-0.5 text-sm text-[#52514e]">A snapshot of your spending.</p>
+          <h1 className="text-xl font-semibold text-[#0b0b0b]">Tableau de bord</h1>
+          <p className="mt-0.5 text-sm text-[#52514e]">Un aperçu de vos dépenses.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="secondary" onClick={() => setShowExportDrawer(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Export data
+            Exporter les données
           </Button>
           <Link
             href="/export"
@@ -66,13 +66,13 @@ export default function DashboardPage() {
                 strokeLinejoin="round"
               />
             </svg>
-            Export Center
+            Centre d&apos;export
           </Link>
           <Button onClick={() => setShowAddModal(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 5v14M5 12h14" strokeLinecap="round" />
             </svg>
-            Add expense
+            Ajouter une dépense
           </Button>
         </div>
       </div>
@@ -80,27 +80,27 @@ export default function DashboardPage() {
       <SummaryCards expenses={expenses} />
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card title="Spending by category" subtitle="All-time totals">
+        <Card title="Dépenses par catégorie" subtitle="Totaux depuis le début">
           <CategoryBreakdownChart expenses={expenses} />
         </Card>
-        <Card title="Monthly trend" subtitle="Last 6 months">
+        <Card title="Tendance mensuelle" subtitle="6 derniers mois">
           <MonthlyTrendChart expenses={expenses} />
         </Card>
       </div>
 
       <Card
-        title="Recent expenses"
+        title="Dépenses récentes"
         action={
           <Link href="/expenses" className="text-sm font-medium text-[#2a78d6] hover:underline">
-            View all
+            Tout voir
           </Link>
         }
       >
         {recent.length === 0 ? (
           <EmptyState
-            title="No expenses yet"
-            description="Start tracking by adding your first expense."
-            action={<Button onClick={() => setShowAddModal(true)}>Add expense</Button>}
+            title="Aucune dépense pour le moment"
+            description="Commencez le suivi en ajoutant votre première dépense."
+            action={<Button onClick={() => setShowAddModal(true)}>Ajouter une dépense</Button>}
           />
         ) : (
           <div>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
       </Card>
 
       {showAddModal && (
-        <Modal title="Add expense" onClose={() => setShowAddModal(false)}>
+        <Modal title="Ajouter une dépense" onClose={() => setShowAddModal(false)}>
           <ExpenseForm onSubmit={handleAdd} onCancel={() => setShowAddModal(false)} />
         </Modal>
       )}

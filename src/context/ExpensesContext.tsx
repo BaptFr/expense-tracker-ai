@@ -31,7 +31,7 @@ export function ExpensesProvider({ children }: { children: React.ReactNode }) {
     try {
       setExpenses(loadExpenses());
     } catch {
-      setError("Couldn't load saved expenses from this browser.");
+      setError("Impossible de charger les dépenses enregistrées dans ce navigateur.");
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +43,7 @@ export function ExpensesProvider({ children }: { children: React.ReactNode }) {
       saveExpenses(next);
       setError(null);
     } catch {
-      setError("Couldn't save changes — your browser storage may be full.");
+      setError("Impossible d'enregistrer les modifications — le stockage de votre navigateur est peut-être plein.");
     }
   }, []);
 

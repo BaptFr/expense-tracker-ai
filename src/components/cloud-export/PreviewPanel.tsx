@@ -14,13 +14,13 @@ export function PreviewPanel({ title, subtitle, headers, rows, footerRow, record
           <p className="text-xs text-[#898781]">{subtitle}</p>
         </div>
         <span className="whitespace-nowrap rounded-full bg-[#f0efec] px-2.5 py-1 text-xs font-medium text-[#52514e]">
-          {recordCount} record{recordCount === 1 ? "" : "s"}
+          {recordCount} ligne{recordCount === 1 ? "" : "s"}
         </span>
       </div>
 
       {rows.length === 0 ? (
         <div className="rounded-lg border border-dashed border-[#e1e0d9] px-4 py-6 text-center text-sm text-[#898781]">
-          No data matches this template yet.
+          Aucune donnée ne correspond encore à ce modèle.
         </div>
       ) : (
         <div className="overflow-hidden rounded-lg border border-[#e1e0d9]">
@@ -59,7 +59,7 @@ export function PreviewPanel({ title, subtitle, headers, rows, footerRow, record
           </table>
           {hidden > 0 && (
             <div className="border-t border-[#ece9e2] bg-[#f9f9f7] px-3 py-2 text-center text-xs text-[#898781]">
-              + {hidden} more row{hidden === 1 ? "" : "s"} not shown
+              + {hidden} ligne{hidden === 1 ? "" : "s"} supplémentaire{hidden === 1 ? "" : "s"} non affichée{hidden === 1 ? "" : "s"}
             </div>
           )}
         </div>

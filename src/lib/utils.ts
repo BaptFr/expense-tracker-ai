@@ -1,17 +1,18 @@
 import { Expense } from "@/types/expense";
+import { CATEGORY_META } from "@/lib/categories";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
+const currencyFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
-  currency: "USD",
+  currency: "EUR",
 });
 
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   month: "short",
   day: "numeric",
   year: "numeric",
 });
 
-const monthFormatter = new Intl.DateTimeFormat("en-US", {
+const monthFormatter = new Intl.DateTimeFormat("fr-FR", {
   month: "short",
   year: "numeric",
 });
@@ -20,11 +21,11 @@ export function formatCurrency(amount: number): string {
   return currencyFormatter.format(amount);
 }
 
-/** Compact currency for stat tiles: $1,284 / $12.9K / $4.2M */
+/** Compact currency for stat tiles: 1 284 € / 12,9 k€ / 4,2 M€ */
 export function formatCurrencyCompact(amount: number): string {
   const abs = Math.abs(amount);
-  if (abs >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1)}M`;
-  if (abs >= 10_000) return `$${(amount / 1_000).toFixed(1)}K`;
+  if (abs >= 1_000_000) return `${(amount / 1_000_000).toFixed(1).replace(".", ",")} M€`;
+  if (abs >= 10_000) return `${(amount / 1_000).toFixed(1).replace(".", ",")} k€`;
   return currencyFormatter.format(amount);
 }
 
@@ -64,11 +65,11 @@ function csvEscape(value: string | number): string {
 }
 
 export function exportExpensesToCsv(expenses: Expense[]): void {
-  const header = ["Date", "Category", "Amount", "Description"];
+  const header = ["Date", "Catégorie", "Montant", "Description"];
   const rows = expenses
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
-    .map((e) => [e.date, e.category, e.amount.toFixed(2), e.description]);
+    .map((e) => [e.date, CATEGORY_META[e.category].label, e.amount.toFixed(2), e.description]);
 
   const csv = [header, ...rows]
     .map((row) => row.map(csvEscape).join(","))
@@ -79,7 +80,7 @@ export function exportExpensesToCsv(expenses: Expense[]): void {
   const link = document.createElement("a");
   const stamp = todayIso();
   link.href = url;
-  link.download = `expenses-${stamp}.csv`;
+  link.download = `depenses-${stamp}.csv`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

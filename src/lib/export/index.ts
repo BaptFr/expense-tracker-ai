@@ -18,7 +18,7 @@ const EXTENSIONS: Record<ExportFormat, string> = {
 };
 
 export function buildExportFilename(base: string, format: ExportFormat): string {
-  const trimmed = base.trim() || "expenses";
+  const trimmed = base.trim() || "depenses";
   const sanitized = trimmed.replace(/[^a-z0-9-_ ]/gi, "").replace(/\s+/g, "-");
   const extension = EXTENSIONS[format];
   return sanitized.toLowerCase().endsWith(`.${extension}`) ? sanitized : `${sanitized}.${extension}`;

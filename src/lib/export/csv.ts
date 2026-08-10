@@ -1,4 +1,5 @@
 import { Expense } from "@/types/expense";
+import { CATEGORY_META } from "@/lib/categories";
 import { downloadBlob } from "@/lib/export/downloadBlob";
 
 function csvEscape(value: string | number): string {
@@ -10,8 +11,8 @@ function csvEscape(value: string | number): string {
 }
 
 export function writeCsv(expenses: Expense[], filename: string): void {
-  const header = ["Date", "Category", "Amount", "Description"];
-  const rows = expenses.map((e) => [e.date, e.category, e.amount.toFixed(2), e.description]);
+  const header = ["Date", "Catégorie", "Montant", "Description"];
+  const rows = expenses.map((e) => [e.date, CATEGORY_META[e.category].label, e.amount.toFixed(2), e.description]);
 
   const csv = [header, ...rows].map((row) => row.map(csvEscape).join(",")).join("\n");
 

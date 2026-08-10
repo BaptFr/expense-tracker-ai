@@ -34,7 +34,7 @@ export function MonthlyTrendChart({ expenses, monthsToShow = 6 }: MonthlyTrendCh
     for (let i = monthsToShow - 1; i >= 0; i--) {
       const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
       const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-      const label = d.toLocaleDateString("en-US", { month: "short" });
+      const label = d.toLocaleDateString("fr-FR", { month: "short" });
       result.push({ key, label, total: 0 });
     }
     const byKey = new Map(result.map((b) => [b.key, b]));
@@ -58,15 +58,15 @@ export function MonthlyTrendChart({ expenses, monthsToShow = 6 }: MonthlyTrendCh
   if (!hasData) {
     return (
       <EmptyState
-        title="No trend yet"
-        description="Once you log expenses across a few months, your spending trend will show up here."
+        title="Pas encore de tendance"
+        description="Une fois que vous aurez enregistré des dépenses sur plusieurs mois, votre tendance de dépenses apparaîtra ici."
       />
     );
   }
 
   return (
     <div className="flex flex-col gap-2">
-      <div role="img" aria-label={`Column chart of total spending per month for the last ${monthsToShow} months`} className="relative h-48 pl-12">
+      <div role="img" aria-label={`Diagramme en colonnes des dépenses totales par mois sur les ${monthsToShow} derniers mois`} className="relative h-48 pl-12">
         {gridSteps.map((step) => (
           <div key={step} className="absolute left-12 right-0 border-t border-[#e1e0d9]" style={{ bottom: `${step * 100}%` }}>
             <span className="absolute -left-12 -translate-y-1/2 pr-2 text-xs tabular-nums text-[#898781]">

@@ -9,8 +9,8 @@ import { ClockIcon } from "@/components/cloud-export/icons";
 import { useToast } from "@/context/ToastContext";
 
 const DESTINATION_LABELS: Record<DestinationId, string> = {
-  download: "Download to device",
-  email: "Email",
+  download: "Télécharger sur l'appareil",
+  email: "E-mail",
   "google-sheets": "Google Sheets",
   dropbox: "Dropbox",
   onedrive: "OneDrive",
@@ -33,7 +33,7 @@ export function BackupScheduleCard({ schedule, templates, nextRunLabel, onSave }
 
   function handleSave() {
     onSave(draft);
-    showToast(draft.enabled ? "Automatic backups scheduled." : "Automatic backups turned off.");
+    showToast(draft.enabled ? "Sauvegardes automatiques planifiées." : "Sauvegardes automatiques désactivées.");
   }
 
   return (
@@ -44,13 +44,13 @@ export function BackupScheduleCard({ schedule, templates, nextRunLabel, onSave }
             <ClockIcon className="h-4 w-4" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[#0b0b0b]">Automatic backups</h3>
-            <p className="text-xs text-[#898781]">Recurring exports on a schedule you set.</p>
+            <h3 className="text-sm font-semibold text-[#0b0b0b]">Sauvegardes automatiques</h3>
+            <p className="text-xs text-[#898781]">Exports récurrents selon la planification que vous définissez.</p>
           </div>
         </div>
 
         <label className="flex cursor-pointer items-center gap-2">
-          <span className="text-xs font-medium text-[#52514e]">{draft.enabled ? "On" : "Off"}</span>
+          <span className="text-xs font-medium text-[#52514e]">{draft.enabled ? "Activé" : "Désactivé"}</span>
           <input
             type="checkbox"
             role="switch"
@@ -63,7 +63,7 @@ export function BackupScheduleCard({ schedule, templates, nextRunLabel, onSave }
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <FormField label="Frequency" htmlFor="schedule-frequency">
+        <FormField label="Fréquence" htmlFor="schedule-frequency">
           <select
             id="schedule-frequency"
             value={draft.frequency}
@@ -71,13 +71,13 @@ export function BackupScheduleCard({ schedule, templates, nextRunLabel, onSave }
             className={inputClasses}
             disabled={!draft.enabled}
           >
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
+            <option value="daily">Quotidienne</option>
+            <option value="weekly">Hebdomadaire</option>
+            <option value="monthly">Mensuelle</option>
           </select>
         </FormField>
 
-        <FormField label="Template" htmlFor="schedule-template">
+        <FormField label="Modèle" htmlFor="schedule-template">
           <select
             id="schedule-template"
             value={draft.templateId}
@@ -112,16 +112,16 @@ export function BackupScheduleCard({ schedule, templates, nextRunLabel, onSave }
 
       <div className="mt-4 flex items-center justify-between">
         <p className="text-xs text-[#52514e]">
-          Next export: <span className="font-medium text-[#0b0b0b]">{draft.enabled ? nextRunLabel : "Not scheduled"}</span>
+          Prochain export : <span className="font-medium text-[#0b0b0b]">{draft.enabled ? nextRunLabel : "Non planifié"}</span>
         </p>
         <Button type="button" variant="secondary" onClick={handleSave} className="text-xs">
-          Save schedule
+          Enregistrer la planification
         </Button>
       </div>
 
       <p className="mt-3 text-xs text-[#898781]">
-        Demo mode — there&apos;s no server to run this on a timer, so the schedule is saved but won&apos;t
-        actually fire in the background.
+        Mode démo — il n&apos;y a pas de serveur pour exécuter ceci sur un minuteur, la planification est donc
+        enregistrée mais ne se déclenchera pas réellement en arrière-plan.
       </p>
     </div>
   );

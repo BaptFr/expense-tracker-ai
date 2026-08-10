@@ -39,14 +39,14 @@ export function CategoryBreakdownChart({ expenses }: CategoryBreakdownChartProps
   if (rows.length === 0) {
     return (
       <EmptyState
-        title="No spending yet"
-        description="Add an expense to see how your spending breaks down by category."
+        title="Aucune dépense pour le moment"
+        description="Ajoutez une dépense pour voir la répartition de vos dépenses par catégorie."
       />
     );
   }
 
   return (
-    <div role="img" aria-label="Bar chart of total spending by category" className="flex flex-col gap-3">
+    <div role="img" aria-label="Diagramme en barres des dépenses totales par catégorie" className="flex flex-col gap-3">
       {rows.map((row) => {
         const meta = CATEGORY_META[row.category];
         const widthPercent = maxTotal > 0 ? (row.total / maxTotal) * 100 : 0;
@@ -60,7 +60,7 @@ export function CategoryBreakdownChart({ expenses }: CategoryBreakdownChartProps
             className="group relative"
             tabIndex={0}
             role="group"
-            aria-label={`${row.category}: ${formatCurrency(row.total)}, ${row.percent.toFixed(0)} percent of total`}
+            aria-label={`${meta.label} : ${formatCurrency(row.total)}, ${row.percent.toFixed(0)} pourcent du total`}
             onMouseEnter={() => setActiveCategory(row.category)}
             onMouseLeave={() => setActiveCategory(null)}
             onFocus={() => setActiveCategory(row.category)}
@@ -73,7 +73,7 @@ export function CategoryBreakdownChart({ expenses }: CategoryBreakdownChartProps
                   style={{ backgroundColor: meta.color }}
                   aria-hidden
                 />
-                {row.category}
+                {meta.label}
               </span>
               {!labelFitsInside && (
                 <span className="tabular-nums text-[#52514e]">{formatCurrency(row.total)}</span>
@@ -106,7 +106,7 @@ export function CategoryBreakdownChart({ expenses }: CategoryBreakdownChartProps
               >
                 <span className="font-semibold">{formatCurrency(row.total)}</span>
                 <span className="ml-1.5 text-white/70">
-                  · {row.category} · {row.percent.toFixed(0)}%
+                  · {meta.label} · {row.percent.toFixed(0)}%
                 </span>
               </div>
             )}

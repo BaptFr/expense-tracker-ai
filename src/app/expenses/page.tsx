@@ -80,30 +80,30 @@ export default function ExpensesPage() {
   function handleAdd(input: ExpenseInput) {
     addExpense(input);
     setShowAddModal(false);
-    showToast("Expense added.");
+    showToast("Dépense ajoutée.");
   }
 
   function handleUpdate(input: ExpenseInput) {
     if (!editingExpense) return;
     updateExpense(editingExpense.id, input);
     setEditingExpense(null);
-    showToast("Expense updated.");
+    showToast("Dépense mise à jour.");
   }
 
   function handleDelete() {
     if (!deletingExpense) return;
     deleteExpense(deletingExpense.id);
     setDeletingExpense(null);
-    showToast("Expense deleted.", "info");
+    showToast("Dépense supprimée.", "info");
   }
 
   function handleExport() {
     if (filtered.length === 0) {
-      showToast("No expenses to export.", "error");
+      showToast("Aucune dépense à exporter.", "error");
       return;
     }
     exportExpensesToCsv(filtered);
-    showToast(`Exported ${filtered.length} expense${filtered.length === 1 ? "" : "s"} to CSV.`);
+    showToast(`${filtered.length} dépense${filtered.length === 1 ? "" : "s"} exportée${filtered.length === 1 ? "" : "s"} en CSV.`);
   }
 
   if (isLoading) return <PageSpinner />;
@@ -112,9 +112,9 @@ export default function ExpensesPage() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-[#0b0b0b]">Expenses</h1>
+          <h1 className="text-xl font-semibold text-[#0b0b0b]">Dépenses</h1>
           <p className="mt-0.5 text-sm text-[#52514e]">
-            {expenses.length} total expense{expenses.length === 1 ? "" : "s"}
+            {expenses.length} dépense{expenses.length === 1 ? "" : "s"} au total
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -122,13 +122,13 @@ export default function ExpensesPage() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Export CSV
+            Exporter en CSV
           </Button>
           <Button onClick={() => setShowAddModal(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 5v14M5 12h14" strokeLinecap="round" />
             </svg>
-            Add expense
+            Ajouter une dépense
           </Button>
         </div>
       </div>
@@ -150,23 +150,23 @@ export default function ExpensesPage() {
       />
 
       <Card
-        title={`${filtered.length} result${filtered.length === 1 ? "" : "s"}`}
-        subtitle={filtered.length > 0 ? `Totaling ${formatCurrency(filteredTotal)}` : undefined}
+        title={`${filtered.length} résultat${filtered.length === 1 ? "" : "s"}`}
+        subtitle={filtered.length > 0 ? `Total : ${formatCurrency(filteredTotal)}` : undefined}
       >
         {filtered.length === 0 ? (
           expenses.length === 0 ? (
             <EmptyState
-              title="No expenses yet"
-              description="Start tracking by adding your first expense."
-              action={<Button onClick={() => setShowAddModal(true)}>Add expense</Button>}
+              title="Aucune dépense pour le moment"
+              description="Commencez le suivi en ajoutant votre première dépense."
+              action={<Button onClick={() => setShowAddModal(true)}>Ajouter une dépense</Button>}
             />
           ) : (
             <EmptyState
-              title="No matches"
-              description="No expenses match your current filters. Try adjusting or resetting them."
+              title="Aucun résultat"
+              description="Aucune dépense ne correspond à vos filtres actuels. Essayez de les ajuster ou de les réinitialiser."
               action={
                 <Button variant="secondary" onClick={resetAll}>
-                  Reset filters
+                  Réinitialiser les filtres
                 </Button>
               }
             />
@@ -186,13 +186,13 @@ export default function ExpensesPage() {
       </Card>
 
       {showAddModal && (
-        <Modal title="Add expense" onClose={() => setShowAddModal(false)}>
+        <Modal title="Ajouter une dépense" onClose={() => setShowAddModal(false)}>
           <ExpenseForm onSubmit={handleAdd} onCancel={() => setShowAddModal(false)} />
         </Modal>
       )}
 
       {editingExpense && (
-        <Modal title="Edit expense" onClose={() => setEditingExpense(null)}>
+        <Modal title="Modifier la dépense" onClose={() => setEditingExpense(null)}>
           <ExpenseForm
             initialExpense={editingExpense}
             onSubmit={handleUpdate}
@@ -203,8 +203,8 @@ export default function ExpensesPage() {
 
       {deletingExpense && (
         <ConfirmDialog
-          title="Delete expense?"
-          message={`This will permanently remove "${deletingExpense.description}" (${formatCurrency(deletingExpense.amount)}). This can't be undone.`}
+          title="Supprimer la dépense ?"
+          message={`Cette action supprimera définitivement « ${deletingExpense.description} » (${formatCurrency(deletingExpense.amount)}). C'est irréversible.`}
           onConfirm={handleDelete}
           onCancel={() => setDeletingExpense(null)}
         />

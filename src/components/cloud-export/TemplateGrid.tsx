@@ -69,7 +69,7 @@ export function TemplateGrid({
 
             <div className="mt-auto flex items-center justify-between pt-1">
               <span className="text-xs font-medium text-[#52514e]">
-                {recordCount} record{recordCount === 1 ? "" : "s"}
+                {recordCount} ligne{recordCount === 1 ? "" : "s"}
               </span>
               <button
                 type="button"
@@ -80,7 +80,7 @@ export function TemplateGrid({
                 className="flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium text-[#2a78d6] hover:bg-white hover:underline"
               >
                 {isDownloading && <Spinner className="h-3 w-3 border-[#9ec5f4] border-t-[#2a78d6]" />}
-                {isDownloading ? "Preparing…" : "Quick download"}
+                {isDownloading ? "Préparation…" : "Téléchargement rapide"}
               </button>
             </div>
           </div>

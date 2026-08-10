@@ -22,7 +22,7 @@ export function EmailExportCard({ template, isSending, onSend }: EmailExportCard
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!EMAIL_PATTERN.test(recipient.trim())) {
-      setError("Enter a valid email address.");
+      setError("Saisissez une adresse e-mail valide.");
       return;
     }
     setError(null);
@@ -37,31 +37,31 @@ export function EmailExportCard({ template, isSending, onSend }: EmailExportCard
           <MailIcon className="h-4 w-4" />
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-[#0b0b0b]">Email export</h3>
-          <p className="text-xs text-[#898781]">Sends the “{template.label}” template as an attachment.</p>
+          <h3 className="text-sm font-semibold text-[#0b0b0b]">Export par e-mail</h3>
+          <p className="text-xs text-[#898781]">Envoie le modèle « {template.label} » en pièce jointe.</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <FormField label="Recipient" htmlFor="export-email-recipient" error={error ?? undefined}>
+        <FormField label="Destinataire" htmlFor="export-email-recipient" error={error ?? undefined}>
           <input
             id="export-email-recipient"
             type="email"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
-            placeholder="you@example.com"
+            placeholder="vous@exemple.com"
             className={inputClasses}
             aria-invalid={Boolean(error)}
           />
         </FormField>
         <Button type="submit" variant="secondary" disabled={isSending || !recipient} className="self-start">
           {isSending && <Spinner className="h-4 w-4" />}
-          {isSending ? "Sending…" : "Send email"}
+          {isSending ? "Envoi en cours…" : "Envoyer l'e-mail"}
         </Button>
       </form>
 
       <p className="mt-3 text-xs text-[#898781]">
-        Demo mode — this simulates the send flow. No email actually leaves your browser.
+        Mode démo — ceci simule le flux d&apos;envoi. Aucun e-mail ne quitte réellement votre navigateur.
       </p>
     </div>
   );

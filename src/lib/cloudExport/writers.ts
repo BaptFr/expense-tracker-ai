@@ -63,7 +63,7 @@ export function writePdfTable(
       doc.setFontSize(8);
       doc.setTextColor(150, 150, 150);
       doc.text(
-        `Page ${doc.getCurrentPageInfo().pageNumber} of ${doc.getNumberOfPages()}`,
+        `Page ${doc.getCurrentPageInfo().pageNumber} sur ${doc.getNumberOfPages()}`,
         40,
         doc.internal.pageSize.getHeight() - 20
       );

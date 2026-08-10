@@ -81,7 +81,7 @@ export function SpendingDonutChart({ segments, centerLabel, size = 200 }: Spendi
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         role="img"
-        aria-label={`Donut chart of spending by category, totaling ${formatCurrency(total)}`}
+        aria-label={`Diagramme en anneau des dépenses par catégorie, totalisant ${formatCurrency(total)}`}
       >
         <g>
           {slices.map((slice) => {
@@ -94,9 +94,9 @@ export function SpendingDonutChart({ segments, centerLabel, size = 200 }: Spendi
                 fill={slice.color}
                 tabIndex={0}
                 role="group"
-                aria-label={`${slice.label}: ${formatCurrency(slice.value)}, ${
+                aria-label={`${slice.label} : ${formatCurrency(slice.value)}, ${
                   total > 0 ? Math.round((slice.value / total) * 100) : 0
-                } percent`}
+                } pourcent`}
                 style={{
                   filter: isActive ? "brightness(1.08)" : undefined,
                   transformOrigin: `${cx}px ${cy}px`,

@@ -17,19 +17,19 @@ export const CLOUD_SERVICES: CloudServiceMeta[] = [
   {
     id: "google-sheets",
     label: "Google Sheets",
-    description: "Push a live-updating copy of your expenses to a spreadsheet.",
+    description: "Envoie une copie de vos dépenses, mise à jour en continu, vers une feuille de calcul.",
     accent: "#1baf7a",
   },
   {
     id: "dropbox",
     label: "Dropbox",
-    description: "Save exports straight into a synced Dropbox folder.",
+    description: "Enregistre les exports directement dans un dossier Dropbox synchronisé.",
     accent: "#2a78d6",
   },
   {
     id: "onedrive",
     label: "OneDrive",
-    description: "Keep a rolling backup in your Microsoft OneDrive.",
+    description: "Conserve une sauvegarde continue dans votre Microsoft OneDrive.",
     accent: "#0b0b0b",
   },
 ];

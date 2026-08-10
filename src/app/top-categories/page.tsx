@@ -43,20 +43,20 @@ export default function TopCategoriesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top Categories</h1>
+        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top catégories</h1>
         <p className="mt-0.5 text-sm text-[#52514e]">
-          Your spending categories, ranked by total amount.
+          Vos catégories de dépenses, classées par montant total.
         </p>
       </div>
 
       <Card
-        title={`${ranked.length} categor${ranked.length === 1 ? "y" : "ies"}`}
-        subtitle={ranked.length > 0 ? "All-time totals" : undefined}
+        title={`${ranked.length} catégorie${ranked.length === 1 ? "" : "s"}`}
+        subtitle={ranked.length > 0 ? "Totaux depuis le début" : undefined}
       >
         {ranked.length === 0 ? (
           <EmptyState
-            title="No spending yet"
-            description="Add an expense to see which categories you spend the most on."
+            title="Aucune dépense pour le moment"
+            description="Ajoutez une dépense pour voir dans quelles catégories vous dépensez le plus."
           />
         ) : (
           <ul className="flex flex-col divide-y divide-[#f0efec]">
@@ -77,7 +77,7 @@ export default function TopCategoriesPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-3">
                       <span className="truncate text-sm font-medium text-[#0b0b0b]">
-                        {row.category}
+                        {meta.label}
                       </span>
                       <span className="shrink-0 tabular-nums text-sm font-semibold text-[#0b0b0b]">
                         {formatCurrency(row.total)}
@@ -93,7 +93,7 @@ export default function TopCategoriesPage() {
                       <span>
                         {row.count} transaction{row.count === 1 ? "" : "s"}
                       </span>
-                      <span>{row.percent.toFixed(1)}% of total</span>
+                      <span>{row.percent.toFixed(1)}% du total</span>
                     </div>
                   </div>
                 </li>

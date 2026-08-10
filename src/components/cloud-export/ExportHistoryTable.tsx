@@ -20,17 +20,17 @@ export function ExportHistoryTable({ history, onClear }: ExportHistoryTableProps
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-[#0b0b0b]">Recent exports</h3>
+        <h3 className="text-sm font-semibold text-[#0b0b0b]">Exports récents</h3>
         {history.length > 0 && (
           <button type="button" onClick={onClear} className="text-xs font-medium text-[#898781] hover:text-[#d03b3b]">
-            Clear history
+            Effacer l&apos;historique
           </button>
         )}
       </div>
 
       {history.length === 0 ? (
         <div className="rounded-lg border border-dashed border-[#e1e0d9] px-4 py-6 text-center text-sm text-[#898781]">
-          Nothing exported yet — actions from this page will show up here.
+          Aucun export pour le moment — les actions de cette page apparaîtront ici.
         </div>
       ) : (
         <ul className="divide-y divide-[#ece9e2] rounded-lg border border-[#e1e0d9]">
@@ -44,7 +44,7 @@ export function ExportHistoryTable({ history, onClear }: ExportHistoryTableProps
                   </span>
                 </div>
                 <p className="mt-0.5 text-xs text-[#898781]">
-                  {entry.recordCount} record{entry.recordCount === 1 ? "" : "s"} · {formatRelativeTime(entry.timestamp)}
+                  {entry.recordCount} ligne{entry.recordCount === 1 ? "" : "s"} · {formatRelativeTime(entry.timestamp)}
                 </p>
               </div>
               <span

@@ -16,6 +16,10 @@ function isRealCategory(category: CategorySlice["category"]): category is Catego
   return category !== "Other categories";
 }
 
+function sliceLabel(category: CategorySlice["category"]): string {
+  return isRealCategory(category) ? CATEGORY_META[category].label : "Autres catégories";
+}
+
 interface MonthlyInsightsProps {
   expenses: Expense[];
 }
@@ -37,26 +41,26 @@ export function MonthlyInsights({ expenses }: MonthlyInsightsProps) {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-[#0b0b0b]">Monthly Insights</h1>
-        <p className="mt-0.5 text-sm text-[#52514e]">{formatMonth(todayIso())} at a glance.</p>
+        <h1 className="text-xl font-semibold text-[#0b0b0b]">Aperçu mensuel</h1>
+        <p className="mt-0.5 text-sm text-[#52514e]">{formatMonth(todayIso())} en un coup d&apos;œil.</p>
       </div>
 
-      <Card title="Spending breakdown" subtitle={formatMonth(todayIso())}>
+      <Card title="Répartition des dépenses" subtitle={formatMonth(todayIso())}>
         {slices.length === 0 ? (
           <EmptyState
-            title="No spending yet this month"
-            description="Once you log an expense this month, its breakdown will show up here."
+            title="Aucune dépense ce mois-ci"
+            description="Dès que vous enregistrerez une dépense ce mois-ci, sa répartition apparaîtra ici."
           />
         ) : (
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-around">
             <SpendingDonutChart
               segments={slices.map((slice) => ({
                 key: slice.key,
-                label: slice.category,
+                label: sliceLabel(slice.category),
                 value: slice.total,
                 color: isRealCategory(slice.category) ? CATEGORY_META[slice.category].color : OTHER_SLICE_COLOR,
               }))}
-              centerLabel="Spending"
+              centerLabel="Dépenses"
             />
 
             <ul className="flex w-full max-w-xs flex-col gap-3">
@@ -72,8 +76,8 @@ export function MonthlyInsights({ expenses }: MonthlyInsightsProps) {
                       {meta ? meta.emoji : "➕"}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-[#0b0b0b]">{slice.category}</p>
-                      <p className="text-xs text-[#898781]">{slice.percent.toFixed(0)}% of this month</p>
+                      <p className="truncate text-sm font-medium text-[#0b0b0b]">{sliceLabel(slice.category)}</p>
+                      <p className="text-xs text-[#898781]">{slice.percent.toFixed(0)}% du mois</p>
                     </div>
                     <span className="shrink-0 tabular-nums text-sm font-semibold text-[#0b0b0b]">
                       {formatCurrency(slice.total)}
@@ -89,16 +93,16 @@ export function MonthlyInsights({ expenses }: MonthlyInsightsProps) {
       <div className="rounded-xl border-2 border-dashed border-[#c3c2b7] bg-white p-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="text-sm font-semibold text-[#0b0b0b]">Budget streak</h2>
+            <h2 className="text-sm font-semibold text-[#0b0b0b]">Série budget</h2>
             <p className="mt-0.5 max-w-xs text-xs text-[#898781]">
-              Consecutive days spending at or under your recent daily average
-              {streak.averageDailySpend > 0 ? ` of ${formatCurrency(streak.averageDailySpend)}` : ""}.
+              Jours consécutifs de dépenses à ou sous votre moyenne quotidienne récente
+              {streak.averageDailySpend > 0 ? ` de ${formatCurrency(streak.averageDailySpend)}` : ""}.
             </p>
           </div>
           <div className="text-right">
             <span className="text-3xl font-semibold text-[#0ca30c]">{streak.days}</span>
             <span className="ml-1.5 text-sm font-medium text-[#52514e]">
-              day{streak.days === 1 ? "" : "s"}!
+              jour{streak.days === 1 ? "" : "s"} !
             </span>
           </div>
         </div>
@@ -111,14 +115,14 @@ export function MonthlyInsights({ expenses }: MonthlyInsightsProps) {
             />
           </div>
           <p className="mt-1.5 text-right text-xs text-[#898781]">
-            {streak.days} / {STREAK_MILESTONE_DAYS} days to a perfect month
+            {streak.days} / {STREAK_MILESTONE_DAYS} jours pour un mois parfait
           </p>
         </div>
       </div>
 
       {monthTotal > 0 && (
         <p className="text-center text-xs text-[#898781]">
-          Total spent in {formatMonth(todayIso())}: {formatCurrency(monthTotal)}
+          Total dépensé en {formatMonth(todayIso())} : {formatCurrency(monthTotal)}
         </p>
       )}
     </div>

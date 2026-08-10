@@ -46,7 +46,7 @@ export function Drawer({ title, subtitle, onClose, children, footer }: DrawerPro
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close panel"
+            aria-label="Fermer le panneau"
             className="rounded-md p-1.5 text-[#898781] transition-colors hover:bg-[#f9f9f7] hover:text-[#0b0b0b]"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

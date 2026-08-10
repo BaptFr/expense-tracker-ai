@@ -93,21 +93,21 @@ export default function TopVendorsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top Vendors</h1>
+        <h1 className="text-xl font-semibold text-[#0b0b0b]">Top marchands</h1>
         <p className="mt-0.5 text-sm text-[#52514e]">
-          Where your money goes, ranked by total spend. Vendors are grouped by
-          each expense&apos;s description.
+          Où va votre argent, classé par dépense totale. Les marchands sont
+          regroupés par description de dépense.
         </p>
       </div>
 
       <Card
-        title={`Top ${topVendors.length} vendor${topVendors.length === 1 ? "" : "s"}`}
-        subtitle={expenses.length > 0 ? `Out of ${vendors.length} unique vendors` : undefined}
+        title={`Top ${topVendors.length} marchand${topVendors.length === 1 ? "" : "s"}`}
+        subtitle={expenses.length > 0 ? `Sur ${vendors.length} marchand${vendors.length === 1 ? "" : "s"} unique${vendors.length === 1 ? "" : "s"}` : undefined}
       >
         {topVendors.length === 0 ? (
           <EmptyState
-            title="No expenses yet"
-            description="Add some expenses to see which vendors you spend the most with."
+            title="Aucune dépense pour le moment"
+            description="Ajoutez des dépenses pour voir avec quels marchands vous dépensez le plus."
           />
         ) : (
           <ul className="divide-y divide-[#f0efec]">
@@ -122,21 +122,21 @@ export default function TopVendorsPage() {
                   <span
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ backgroundColor: meta.color }}
-                    title={vendor.topCategory}
+                    title={meta.label}
                     aria-hidden="true"
                   />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-[#0b0b0b]">{vendor.name}</p>
                     <p className="mt-0.5 text-xs text-[#898781]">
                       {vendor.count} transaction{vendor.count === 1 ? "" : "s"} &middot;{" "}
-                      {vendor.topCategory}
+                      {meta.label}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">
                     <p className="text-sm font-semibold text-[#0b0b0b]">
                       {formatCurrency(vendor.total)}
                     </p>
-                    <p className="mt-0.5 text-xs text-[#898781]">{share.toFixed(1)}% of total</p>
+                    <p className="mt-0.5 text-xs text-[#898781]">{share.toFixed(1)}% du total</p>
                   </div>
                 </li>
               );

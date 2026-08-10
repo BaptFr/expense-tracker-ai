@@ -45,7 +45,7 @@ export function CloudConnectionsGrid({
                     className={`h-1.5 w-1.5 rounded-full ${isConnected ? "bg-[#0ca30c]" : "bg-[#c3c2b7]"}`}
                     aria-hidden
                   />
-                  <span className="text-xs text-[#898781]">{isConnected ? "Connected" : "Not connected"}</span>
+                  <span className="text-xs text-[#898781]">{isConnected ? "Connecté" : "Non connecté"}</span>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ export function CloudConnectionsGrid({
             <p className="text-xs text-[#898781]">{service.description}</p>
 
             {isConnected && state?.lastSyncedAt && (
-              <p className="text-xs text-[#52514e]">Last synced {formatRelativeTime(state.lastSyncedAt)}</p>
+              <p className="text-xs text-[#52514e]">Dernière synchro {formatRelativeTime(state.lastSyncedAt)}</p>
             )}
 
             {isConnected ? (
@@ -64,17 +64,17 @@ export function CloudConnectionsGrid({
                   onClick={() => onSync(service.id)}
                   disabled={isSyncing}
                   className="flex-1 px-2.5 py-1.5 text-xs"
-                  title={`Sync "${templateLabel}" to ${service.label}`}
+                  title={`Synchroniser « ${templateLabel} » vers ${service.label}`}
                 >
                   {isSyncing && <Spinner className="h-3.5 w-3.5" />}
-                  {isSyncing ? "Syncing…" : "Sync now"}
+                  {isSyncing ? "Synchronisation…" : "Synchroniser"}
                 </Button>
                 <button
                   type="button"
                   onClick={() => onDisconnect(service.id)}
                   className="rounded-md px-2 py-1.5 text-xs font-medium text-[#898781] hover:bg-[#f9f9f7] hover:text-[#d03b3b]"
                 >
-                  Disconnect
+                  Déconnecter
                 </button>
               </div>
             ) : (
@@ -86,7 +86,7 @@ export function CloudConnectionsGrid({
                 className="mt-auto text-xs"
               >
                 {isConnecting && <Spinner className="h-3.5 w-3.5" />}
-                {isConnecting ? "Connecting…" : "Connect"}
+                {isConnecting ? "Connexion…" : "Connecter"}
               </Button>
             )}
           </div>

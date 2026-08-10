@@ -21,12 +21,12 @@ export function saveSchedule(config: ScheduleConfig): ScheduleConfig {
 
 /** Purely informational — there's no server to actually run this on a timer. */
 export function computeNextRunLabel(config: ScheduleConfig): string {
-  if (!config.enabled) return "Not scheduled";
+  if (!config.enabled) return "Non planifié";
 
   const next = new Date();
   if (config.frequency === "daily") next.setDate(next.getDate() + 1);
   else if (config.frequency === "weekly") next.setDate(next.getDate() + 7);
   else next.setMonth(next.getMonth() + 1, 1);
 
-  return next.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  return next.toLocaleDateString("fr-FR", { weekday: "short", month: "short", day: "numeric" });
 }

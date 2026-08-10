@@ -1,6 +1,7 @@
 import { Expense } from "@/types/expense";
 import { TemplateId, ExportFormat } from "@/lib/cloudExport/types";
 import { aggregateByCategory } from "@/lib/cloudExport/aggregate";
+import { CATEGORY_META } from "@/lib/categories";
 import { formatCurrency, formatDate, formatMonth, monthKey, todayIso } from "@/lib/utils";
 import type { Cell } from "@/lib/cloudExport/writers";
 
@@ -32,14 +33,14 @@ function itemizedRows(expenses: Expense[]): Cell[][] {
   return expenses
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
-    .map((e) => [formatDate(e.date), e.category, formatCurrency(e.amount), e.description]);
+    .map((e) => [formatDate(e.date), CATEGORY_META[e.category].label, formatCurrency(e.amount), e.description]);
 }
 
 export const EXPORT_TEMPLATES: TemplateDefinition[] = [
   {
     id: "tax-report",
-    label: "Tax Report",
-    description: "Every itemized expense for the current calendar year, ready for your accountant.",
+    label: "Rapport fiscal",
+    description: "Chaque dépense détaillée pour l'année civile en cours, prête pour votre comptable.",
     format: "pdf",
     icon: "receipt",
     build: (expenses) => {
@@ -48,9 +49,9 @@ export const EXPORT_TEMPLATES: TemplateDefinition[] = [
       const total = inRange.reduce((sum, e) => sum + e.amount, 0);
       const year = new Date().getFullYear();
       return {
-        title: `Tax Report — ${year}`,
-        subtitle: `Itemized expenses from Jan 1 to Dec 31, ${year} · Generated ${new Date().toLocaleDateString("en-US")}`,
-        headers: ["Date", "Category", "Amount", "Description"],
+        title: `Rapport fiscal — ${year}`,
+        subtitle: `Dépenses détaillées du 1er janvier au 31 décembre ${year} · Généré le ${new Date().toLocaleDateString("fr-FR")}`,
+        headers: ["Date", "Catégorie", "Montant", "Description"],
         rows: itemizedRows(inRange),
         footerRow: ["", "", formatCurrency(total), "Total"],
         jsonPayload: { year, total, count: inRange.length, expenses: inRange },
@@ -60,8 +61,8 @@ export const EXPORT_TEMPLATES: TemplateDefinition[] = [
   },
   {
     id: "monthly-summary",
-    label: "Monthly Summary",
-    description: "A category-by-category breakdown of this month's spending.",
+    label: "Résumé mensuel",
+    description: "Une répartition catégorie par catégorie des dépenses de ce mois-ci.",
     format: "pdf",
     icon: "calendar",
     build: (expenses) => {
@@ -71,10 +72,10 @@ export const EXPORT_TEMPLATES: TemplateDefinition[] = [
       const total = inMonth.reduce((sum, e) => sum + e.amount, 0);
       const label = formatMonth(todayIso());
       return {
-        title: `Monthly Summary — ${label}`,
-        subtitle: `Category breakdown for ${label} · Generated ${new Date().toLocaleDateString("en-US")}`,
-        headers: ["Category", "Transactions", "Total", "Share"],
-        rows: breakdown.map((row) => [row.category, row.count, formatCurrency(row.total), `${row.percent.toFixed(1)}%`]),
+        title: `Résumé mensuel — ${label}`,
+        subtitle: `Répartition par catégorie pour ${label} · Généré le ${new Date().toLocaleDateString("fr-FR")}`,
+        headers: ["Catégorie", "Transactions", "Total", "Part"],
+        rows: breakdown.map((row) => [CATEGORY_META[row.category].label, row.count, formatCurrency(row.total), `${row.percent.toFixed(1)}%`]),
         footerRow: ["", inMonth.length, formatCurrency(total), "100%"],
         jsonPayload: { month: label, total, count: inMonth.length, breakdown },
         recordCount: inMonth.length,
@@ -83,18 +84,18 @@ export const EXPORT_TEMPLATES: TemplateDefinition[] = [
   },
   {
     id: "category-analysis",
-    label: "Category Analysis",
-    description: "All-time spending totals and share per category, sorted highest first.",
+    label: "Analyse par catégorie",
+    description: "Totaux et part de dépenses par catégorie depuis le début, triés du plus élevé au plus faible.",
     format: "csv",
     icon: "chart",
     build: (expenses) => {
       const breakdown = aggregateByCategory(expenses);
       const total = expenses.reduce((sum, e) => sum + e.amount, 0);
       return {
-        title: "Category Analysis",
-        subtitle: "All-time spending by category",
-        headers: ["Category", "Transactions", "Total", "Share of spend"],
-        rows: breakdown.map((row) => [row.category, row.count, row.total.toFixed(2), `${row.percent.toFixed(1)}%`]),
+        title: "Analyse par catégorie",
+        subtitle: "Dépenses par catégorie depuis le début",
+        headers: ["Catégorie", "Transactions", "Total", "Part des dépenses"],
+        rows: breakdown.map((row) => [CATEGORY_META[row.category].label, row.count, row.total.toFixed(2), `${row.percent.toFixed(1)}%`]),
         footerRow: ["", expenses.length, total.toFixed(2), "100%"],
         jsonPayload: { total, count: expenses.length, breakdown },
         recordCount: breakdown.length,
@@ -103,14 +104,14 @@ export const EXPORT_TEMPLATES: TemplateDefinition[] = [
   },
   {
     id: "full-backup",
-    label: "Full Data Backup",
-    description: "A complete, structured export of every expense record you have.",
+    label: "Sauvegarde complète",
+    description: "Un export complet et structuré de toutes vos dépenses enregistrées.",
     format: "json",
     icon: "archive",
     build: (expenses) => ({
-      title: "Full Data Backup",
-      subtitle: "Complete raw export",
-      headers: ["Date", "Category", "Amount", "Description"],
+      title: "Sauvegarde complète",
+      subtitle: "Export brut complet",
+      headers: ["Date", "Catégorie", "Montant", "Description"],
       rows: itemizedRows(expenses),
       jsonPayload: { exportedAt: new Date().toISOString(), count: expenses.length, expenses },
       recordCount: expenses.length,

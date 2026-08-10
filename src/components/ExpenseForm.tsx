@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CATEGORY_LIST } from "@/lib/categories";
+import { CATEGORY_LIST, CATEGORY_META } from "@/lib/categories";
 import { todayIso } from "@/lib/utils";
 import { Category, Expense, ExpenseFormErrors, ExpenseInput } from "@/types/expense";
 import { Button } from "@/components/ui/Button";
@@ -17,25 +17,25 @@ function validate(input: ExpenseInput): ExpenseFormErrors {
   const errors: ExpenseFormErrors = {};
 
   if (!input.date) {
-    errors.date = "Date is required.";
+    errors.date = "La date est requise.";
   } else if (input.date > todayIso()) {
-    errors.date = "Date can't be in the future.";
+    errors.date = "La date ne peut pas être dans le futur.";
   }
 
   if (Number.isNaN(input.amount) || input.amount <= 0) {
-    errors.amount = "Enter an amount greater than $0.";
+    errors.amount = "Saisissez un montant supérieur à 0 €.";
   } else if (input.amount > 1_000_000) {
-    errors.amount = "That amount looks too large — double check it.";
+    errors.amount = "Ce montant semble trop élevé — vérifiez-le.";
   }
 
   if (!input.category) {
-    errors.category = "Choose a category.";
+    errors.category = "Choisissez une catégorie.";
   }
 
   if (!input.description.trim()) {
-    errors.description = "Add a short description.";
+    errors.description = "Ajoutez une courte description.";
   } else if (input.description.trim().length > 120) {
-    errors.description = "Keep the description under 120 characters.";
+    errors.description = "Limitez la description à 120 caractères.";
   }
 
   return errors;
@@ -81,10 +81,10 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
         />
       </FormField>
 
-      <FormField label="Amount" htmlFor="expense-amount" error={errors.amount}>
+      <FormField label="Montant" htmlFor="expense-amount" error={errors.amount}>
         <div className="relative">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#898781]">
-            $
+            €
           </span>
           <input
             id="expense-amount"
@@ -101,7 +101,7 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
         </div>
       </FormField>
 
-      <FormField label="Category" htmlFor="expense-category" error={errors.category}>
+      <FormField label="Catégorie" htmlFor="expense-category" error={errors.category}>
         <select
           id="expense-category"
           value={category}
@@ -110,11 +110,11 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
           className={inputClasses}
         >
           <option value="" disabled>
-            Select a category
+            Choisissez une catégorie
           </option>
           {CATEGORY_LIST.map((c) => (
             <option key={c} value={c}>
-              {c}
+              {CATEGORY_META[c].label}
             </option>
           ))}
         </select>
@@ -124,7 +124,7 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
         <input
           id="expense-description"
           type="text"
-          placeholder="e.g. Groceries at Whole Foods"
+          placeholder="ex. Courses chez Carrefour"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           aria-invalid={Boolean(errors.description)}
@@ -135,10 +135,10 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
 
       <div className="mt-2 flex justify-end gap-2">
         <Button type="button" variant="secondary" onClick={onCancel}>
-          Cancel
+          Annuler
         </Button>
         <Button type="submit" variant="primary">
-          {initialExpense ? "Save changes" : "Add expense"}
+          {initialExpense ? "Enregistrer" : "Ajouter la dépense"}
         </Button>
       </div>
     </form>

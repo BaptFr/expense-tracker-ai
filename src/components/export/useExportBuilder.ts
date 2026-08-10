@@ -12,7 +12,7 @@ export function useExportBuilder(expenses: Expense[]) {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [categories, setCategories] = useState<Set<Category>>(new Set());
-  const [filename, setFilename] = useState(`expenses-${todayIso()}`);
+  const [filename, setFilename] = useState(`depenses-${todayIso()}`);
   const [isExporting, setIsExporting] = useState(false);
 
   const toggleCategory = useCallback((category: Category) => {

@@ -35,26 +35,26 @@ export function ShareLinkCard({ shareLink, isGenerating, onGenerate }: ShareLink
           <LinkIcon className="h-4 w-4" />
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-[#0b0b0b]">Shareable link</h3>
-          <p className="text-xs text-[#898781]">Generate a link and QR code for the current preview.</p>
+          <h3 className="text-sm font-semibold text-[#0b0b0b]">Lien de partage</h3>
+          <p className="text-xs text-[#898781]">Générez un lien et un QR code pour l&apos;aperçu actuel.</p>
         </div>
       </div>
 
       <div className="flex flex-wrap items-end gap-2">
-        <FormFieldInline label="Link expires">
+        <FormFieldInline label="Le lien expire">
           <select
             value={expiry}
             onChange={(e) => setExpiry(e.target.value as ShareExpiry)}
             className="rounded-lg border border-[#c3c2b7] bg-white px-3 py-2 text-sm text-[#0b0b0b] outline-none focus:border-[#2a78d6] focus:ring-2 focus:ring-[#2a78d6]/20"
           >
-            <option value="7">7 days</option>
-            <option value="30">30 days</option>
-            <option value="never">Never</option>
+            <option value="7">Dans 7 jours</option>
+            <option value="30">Dans 30 jours</option>
+            <option value="never">Jamais</option>
           </select>
         </FormFieldInline>
         <Button type="button" variant="secondary" onClick={() => onGenerate(expiry)} disabled={isGenerating}>
           {isGenerating && <Spinner className="h-4 w-4" />}
-          {isGenerating ? "Generating…" : shareLink ? "Regenerate link" : "Generate link"}
+          {isGenerating ? "Génération…" : shareLink ? "Régénérer le lien" : "Générer le lien"}
         </Button>
       </div>
 
@@ -63,7 +63,7 @@ export function ShareLinkCard({ shareLink, isGenerating, onGenerate }: ShareLink
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={shareLink.qrCodeDataUrl}
-            alt="QR code linking to the shared export"
+            alt="QR code menant vers l'export partagé"
             className="h-24 w-24 rounded-md bg-white p-1.5 ring-1 ring-black/5"
           />
           <div className="min-w-0 flex-1">
@@ -72,7 +72,7 @@ export function ShareLinkCard({ shareLink, isGenerating, onGenerate }: ShareLink
                 {shareLink.url}
               </code>
               <Button type="button" variant="secondary" onClick={handleCopy} className="shrink-0 px-3 py-1.5 text-xs">
-                {copied ? "Copied" : "Copy"}
+                {copied ? "Copié" : "Copier"}
               </Button>
             </div>
             <p className="mt-1.5 text-xs text-[#898781]">{shareLink.expiresLabel}</p>
@@ -81,8 +81,8 @@ export function ShareLinkCard({ shareLink, isGenerating, onGenerate }: ShareLink
       )}
 
       <p className="mt-3 text-xs text-[#898781]">
-        Demo mode — this link isn&apos;t actually hosted anywhere. In a live product it would resolve to a
-        read-only, permissioned view of this export.
+        Mode démo — ce lien n&apos;est pas réellement hébergé. Dans un produit réel, il pointerait vers une
+        vue en lecture seule et permissionnée de cet export.
       </p>
     </div>
   );

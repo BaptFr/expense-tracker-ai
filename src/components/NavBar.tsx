@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "/", label: "Dashboard" },
-  { href: "/expenses", label: "Expenses" },
-  { href: "/insights", label: "Insights" },
-  { href: "/top-categories", label: "Top Categories" },
-  { href: "/top-vendors", label: "Top Vendors" },
+  { href: "/", label: "Tableau de bord" },
+  { href: "/expenses", label: "Dépenses" },
+  { href: "/insights", label: "Aperçu" },
+  { href: "/top-categories", label: "Top catégories" },
+  { href: "/top-vendors", label: "Top marchands" },
   { href: "/export", label: "Export" },
 ];
 
@@ -20,8 +20,8 @@ export function NavBar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2a78d6] text-white">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="100%" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg">
+              <text x="32" y="51" font-size="56" font-weight="600" text-anchor="middle" fill="white">€</text>
             </svg>
           </div>
           <span className="text-base font-semibold text-[#0b0b0b]">Expensely</span>

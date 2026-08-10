@@ -30,17 +30,17 @@ export default function ExportCenterPage() {
 
   async function handleDownload(templateId: Parameters<typeof cloud.download>[0]) {
     const result = await cloud.download(templateId);
-    showToast(`Downloaded ${result.recordCount} record${result.recordCount === 1 ? "" : "s"}.`);
+    showToast(`${result.recordCount} ligne${result.recordCount === 1 ? "" : "s"} téléchargée${result.recordCount === 1 ? "" : "s"}.`);
   }
 
   async function handleSendEmail(recipient: string) {
     await cloud.sendEmail(cloud.selectedTemplateId, recipient);
-    showToast(`Emailed "${cloud.selectedTemplate.label}" to ${recipient}.`);
+    showToast(`« ${cloud.selectedTemplate.label} » envoyé par e-mail à ${recipient}.`);
   }
 
   async function handleSync(id: Parameters<typeof cloud.sync>[0]) {
     await cloud.sync(id, cloud.selectedTemplateId);
-    showToast(`Synced "${cloud.selectedTemplate.label}" to your cloud destination.`);
+    showToast(`« ${cloud.selectedTemplate.label} » synchronisé vers votre destination cloud.`);
   }
 
   return (
@@ -48,19 +48,19 @@ export default function ExportCenterPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold text-[#0b0b0b]">Export Center</h1>
+            <h1 className="text-xl font-semibold text-[#0b0b0b]">Centre d&apos;export</h1>
             <span className="rounded-full bg-[#fdf1dc] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#8a6400]">
-              Demo integrations
+              Intégrations de démo
             </span>
           </div>
           <p className="mt-0.5 text-sm text-[#52514e]">
-            Send, sync, and share your expense data — templates, email, cloud sync, and scheduled backups.
+            Envoyez, synchronisez et partagez vos données de dépenses — modèles, e-mail, synchronisation cloud et sauvegardes planifiées.
           </p>
         </div>
       </div>
 
       <section>
-        <SectionHeading title="Templates" subtitle="Pick a preset shaped for a specific purpose. Selecting one updates the preview and every action below." />
+        <SectionHeading title="Modèles" subtitle="Choisissez un préréglage adapté à un usage précis. Le sélectionner met à jour l'aperçu et toutes les actions ci-dessous." />
         <TemplateGrid
           templates={cloud.templates}
           expenses={expenses}
@@ -72,14 +72,14 @@ export default function ExportCenterPage() {
       </section>
 
       <section>
-        <SectionHeading title="Preview" subtitle="Exactly what the selected template will produce." />
+        <SectionHeading title="Aperçu" subtitle="Exactement ce que le modèle sélectionné va produire." />
         <div className="rounded-xl border border-[#e1e0d9] bg-white p-4">
           <PreviewPanel {...cloud.preview} />
         </div>
       </section>
 
       <section>
-        <SectionHeading title="Send & share" subtitle="Get this export to someone else, or to yourself elsewhere." />
+        <SectionHeading title="Envoyer et partager" subtitle="Envoyez cet export à quelqu'un d'autre, ou à vous-même ailleurs." />
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           <EmailExportCard
             template={cloud.selectedTemplate}
@@ -91,7 +91,7 @@ export default function ExportCenterPage() {
       </section>
 
       <section>
-        <SectionHeading title="Cloud sync" subtitle="Connect a service to push exports there automatically." />
+        <SectionHeading title="Synchronisation cloud" subtitle="Connectez un service pour y pousser automatiquement vos exports." />
         <CloudConnectionsGrid
           connections={cloud.connections}
           pendingAction={cloud.pendingAction}
@@ -103,7 +103,7 @@ export default function ExportCenterPage() {
       </section>
 
       <section>
-        <SectionHeading title="Automatic backups" subtitle="Set it once and forget it." />
+        <SectionHeading title="Sauvegardes automatiques" subtitle="Configurez une fois, puis n'y pensez plus." />
         <BackupScheduleCard
           schedule={cloud.schedule}
           templates={cloud.templates}
@@ -113,7 +113,7 @@ export default function ExportCenterPage() {
       </section>
 
       <section>
-        <SectionHeading title="History" subtitle="Every export triggered from this page, most recent first." />
+        <SectionHeading title="Historique" subtitle="Chaque export déclenché depuis cette page, du plus récent au plus ancien." />
         <ExportHistoryTable history={cloud.history} onClear={cloud.clearHistory} />
       </section>
     </div>

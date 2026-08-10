@@ -46,23 +46,23 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
 
   return (
     <Drawer
-      title="Export expenses"
-      subtitle="Choose a format, narrow down the data, and download."
+      title="Exporter les dépenses"
+      subtitle="Choisissez un format, affinez les données, puis téléchargez."
       onClose={onClose}
       footer={
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm text-[#52514e]">
             {filtered.length === 0
-              ? "No records match these filters."
-              : `${filtered.length} record${filtered.length === 1 ? "" : "s"} · ${formatCurrency(total)}`}
+              ? "Aucune ligne ne correspond à ces filtres."
+              : `${filtered.length} ligne${filtered.length === 1 ? "" : "s"} · ${formatCurrency(total)}`}
           </p>
           <div className="flex gap-2">
             <Button type="button" variant="secondary" onClick={onClose} disabled={isExporting}>
-              Cancel
+              Annuler
             </Button>
             <Button type="button" onClick={handleExport} disabled={filtered.length === 0 || isExporting}>
               {isExporting && <Spinner className="h-4 w-4 border-white/40 border-t-white" />}
-              {isExporting ? "Exporting…" : `Export ${filtered.length || ""}`.trim()}
+              {isExporting ? "Export en cours…" : `Exporter ${filtered.length || ""}`.trim()}
             </Button>
           </div>
         </div>
@@ -96,17 +96,17 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
 
         <section>
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-sm font-medium text-[#0b0b0b]">Filters</h3>
+            <h3 className="text-sm font-medium text-[#0b0b0b]">Filtres</h3>
             {hasActiveFilters && (
               <button type="button" onClick={resetFilters} className="text-xs font-medium text-[#2a78d6] hover:underline">
-                Reset filters
+                Réinitialiser les filtres
               </button>
             )}
           </div>
 
           <div className="flex flex-col gap-3">
             <div className="grid grid-cols-2 gap-3">
-              <FormField label="From" htmlFor="export-date-from">
+              <FormField label="Du" htmlFor="export-date-from">
                 <input
                   id="export-date-from"
                   type="date"
@@ -116,7 +116,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
                   className={inputClasses}
                 />
               </FormField>
-              <FormField label="To" htmlFor="export-date-to">
+              <FormField label="Au" htmlFor="export-date-to">
                 <input
                   id="export-date-to"
                   type="date"
@@ -129,7 +129,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
             </div>
 
             <div>
-              <span className="mb-1.5 block text-sm font-medium text-[#0b0b0b]">Categories</span>
+              <span className="mb-1.5 block text-sm font-medium text-[#0b0b0b]">Catégories</span>
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
@@ -140,7 +140,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
                       : "bg-[#f0efec] text-[#52514e] hover:bg-[#e1e0d9]"
                   }`}
                 >
-                  All categories
+                  Toutes les catégories
                 </button>
                 {CATEGORY_LIST.map((category) => {
                   const isActive = categories.has(category);
@@ -161,7 +161,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
                       }
                     >
                       <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: meta.color }} aria-hidden />
-                      {category}
+                      {meta.label}
                     </button>
                   );
                 })}
@@ -171,14 +171,14 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
         </section>
 
         <section>
-          <FormField label="File name" htmlFor="export-filename">
+          <FormField label="Nom du fichier" htmlFor="export-filename">
             <div className="flex items-center gap-2">
               <input
                 id="export-filename"
                 type="text"
                 value={filename}
                 onChange={(e) => setFilename(e.target.value)}
-                placeholder="expenses"
+                placeholder="depenses"
                 className={inputClasses}
               />
               <span className="whitespace-nowrap text-sm text-[#898781]">.{format}</span>
@@ -188,15 +188,15 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
 
         <section>
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-sm font-medium text-[#0b0b0b]">Preview</h3>
+            <h3 className="text-sm font-medium text-[#0b0b0b]">Aperçu</h3>
             <span className="text-xs text-[#898781]">
-              {filtered.length} record{filtered.length === 1 ? "" : "s"} · {formatCurrency(total)} total
+              {filtered.length} ligne{filtered.length === 1 ? "" : "s"} · {formatCurrency(total)} au total
             </span>
           </div>
 
           {filtered.length === 0 ? (
             <div className="rounded-lg border border-dashed border-[#e1e0d9] px-4 py-6 text-center text-sm text-[#898781]">
-              No expenses match the current filters.
+              Aucune dépense ne correspond aux filtres actuels.
             </div>
           ) : (
             <div className="overflow-hidden rounded-lg border border-[#e1e0d9]">
@@ -204,8 +204,8 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
                 <thead className="bg-[#f9f9f7] text-xs uppercase tracking-wide text-[#898781]">
                   <tr>
                     <th className="px-3 py-2 font-medium">Date</th>
-                    <th className="px-3 py-2 font-medium">Category</th>
-                    <th className="px-3 py-2 font-medium text-right">Amount</th>
+                    <th className="px-3 py-2 font-medium">Catégorie</th>
+                    <th className="px-3 py-2 font-medium text-right">Montant</th>
                     <th className="px-3 py-2 font-medium">Description</th>
                   </tr>
                 </thead>
@@ -213,7 +213,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
                   {preview.map((expense) => (
                     <tr key={expense.id}>
                       <td className="whitespace-nowrap px-3 py-2 text-[#52514e]">{expense.date}</td>
-                      <td className="whitespace-nowrap px-3 py-2 text-[#52514e]">{expense.category}</td>
+                      <td className="whitespace-nowrap px-3 py-2 text-[#52514e]">{CATEGORY_META[expense.category].label}</td>
                       <td className="whitespace-nowrap px-3 py-2 text-right text-[#0b0b0b]">
                         {formatCurrency(expense.amount)}
                       </td>
@@ -226,7 +226,7 @@ export function ExportDrawer({ expenses, onClose, onExported }: ExportDrawerProp
               </table>
               {hiddenCount > 0 && (
                 <div className="border-t border-[#ece9e2] bg-[#f9f9f7] px-3 py-2 text-center text-xs text-[#898781]">
-                  + {hiddenCount} more row{hiddenCount === 1 ? "" : "s"} not shown
+                  + {hiddenCount} ligne{hiddenCount === 1 ? "" : "s"} supplémentaire{hiddenCount === 1 ? "" : "s"} non affichée{hiddenCount === 1 ? "" : "s"}
                 </div>
               )}
             </div>

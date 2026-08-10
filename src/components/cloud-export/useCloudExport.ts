@@ -61,7 +61,7 @@ export function useCloudExport(expenses: Expense[]) {
             templateLabel: template.label,
             format: result.format,
             destination: "download",
-            destinationLabel: "Downloaded",
+            destinationLabel: "Téléchargé",
             recordCount: result.recordCount,
             filename: result.filename,
           })
@@ -87,7 +87,7 @@ export function useCloudExport(expenses: Expense[]) {
             templateLabel: template.label,
             format: result.format,
             destination: "email",
-            destinationLabel: `Emailed to ${recipient}`,
+            destinationLabel: `Envoyé par e-mail à ${recipient}`,
             recordCount: result.recordCount,
             filename: result.filename,
           })
@@ -128,7 +128,7 @@ export function useCloudExport(expenses: Expense[]) {
             templateLabel: template.label,
             format: result.format,
             destination: id,
-            destinationLabel: `Synced to ${service?.label ?? id}`,
+            destinationLabel: `Synchronisé vers ${service?.label ?? id}`,
             recordCount: result.recordCount,
             filename: result.filename,
           })

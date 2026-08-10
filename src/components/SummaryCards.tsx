@@ -55,23 +55,23 @@ export function SummaryCards({ expenses }: SummaryCardsProps) {
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <StatTile label="Total spending" value={formatCurrency(stats.total)} />
+      <StatTile label="Dépenses totales" value={formatCurrency(stats.total)} />
       <StatTile
-        label="This month"
+        label="Ce mois-ci"
         value={formatCurrency(stats.thisMonthTotal)}
         delta={
           monthDeltaPercent === null
             ? undefined
             : {
-                text: `${Math.abs(monthDeltaPercent).toFixed(0)}% vs last month`,
+                text: `${Math.abs(monthDeltaPercent).toFixed(0)}% vs mois dernier`,
                 direction: monthDeltaPercent > 0 ? "up" : monthDeltaPercent < 0 ? "down" : "flat",
                 isGood: monthDeltaPercent <= 0,
               }
         }
       />
       <StatTile
-        label="Top category"
-        value={stats.topCategory ?? "—"}
+        label="Catégorie principale"
+        value={stats.topCategory ? CATEGORY_META[stats.topCategory as keyof typeof CATEGORY_META].label : "—"}
         accent={stats.topCategory ? CATEGORY_META[stats.topCategory as keyof typeof CATEGORY_META].color : undefined}
         caption={stats.topCategory ? formatCurrency(stats.topCategoryTotal) : undefined}
       />

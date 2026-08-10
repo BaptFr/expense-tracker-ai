@@ -5,8 +5,8 @@ import { ExpensesProvider } from "@/context/ExpensesContext";
 import { ToastProvider } from "@/context/ToastContext";
 
 export const metadata: Metadata = {
-  title: "Expensely — Expense Tracker",
-  description: "Track and understand your personal spending.",
+  title: "Expensely - Suivi de dépenses",
+  description: "Suivez et comprenez vos dépenses personnelles.",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className="antialiased">
         <ToastProvider>
           <ExpensesProvider>

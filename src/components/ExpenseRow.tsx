@@ -18,13 +18,13 @@ export function ExpenseRow({ expense, onEdit, onDelete }: ExpenseRowProps) {
         style={{ backgroundColor: meta.bg, color: meta.color }}
         aria-hidden
       >
-        {expense.category.slice(0, 1)}
+        {meta.label.slice(0, 1)}
       </span>
 
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-[#0b0b0b]">{expense.description}</p>
         <p className="mt-0.5 text-xs text-[#898781]">
-          {formatDate(expense.date)} · {expense.category}
+          {formatDate(expense.date)} · {meta.label}
         </p>
       </div>
 
@@ -38,7 +38,7 @@ export function ExpenseRow({ expense, onEdit, onDelete }: ExpenseRowProps) {
             <button
               type="button"
               onClick={() => onEdit(expense)}
-              aria-label={`Edit ${expense.description}`}
+              aria-label={`Modifier ${expense.description}`}
               className="rounded-md p-1.5 text-[#898781] transition-colors hover:bg-[#f0efec] hover:text-[#2a78d6]"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -54,7 +54,7 @@ export function ExpenseRow({ expense, onEdit, onDelete }: ExpenseRowProps) {
             <button
               type="button"
               onClick={() => onDelete(expense)}
-              aria-label={`Delete ${expense.description}`}
+              aria-label={`Supprimer ${expense.description}`}
               className="rounded-md p-1.5 text-[#898781] transition-colors hover:bg-[#fbeceb] hover:text-[#d03b3b]"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -53,17 +53,17 @@ export function FilterBar({
           </svg>
           <input
             type="search"
-            placeholder="Search descriptions…"
+            placeholder="Rechercher dans les descriptions…"
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             className={`${inputClasses} pl-9`}
-            aria-label="Search expenses by description"
+            aria-label="Rechercher des dépenses par description"
           />
         </div>
 
         <div className="flex items-center gap-2">
           <label htmlFor="date-from" className="sr-only">
-            From date
+            Date de début
           </label>
           <input
             id="date-from"
@@ -71,11 +71,11 @@ export function FilterBar({
             value={dateFrom}
             onChange={(e) => onDateFromChange(e.target.value)}
             className={`${inputClasses} w-[150px]`}
-            aria-label="From date"
+            aria-label="Date de début"
           />
-          <span className="text-sm text-[#898781]">to</span>
+          <span className="text-sm text-[#898781]">à</span>
           <label htmlFor="date-to" className="sr-only">
-            To date
+            Date de fin
           </label>
           <input
             id="date-to"
@@ -83,7 +83,7 @@ export function FilterBar({
             value={dateTo}
             onChange={(e) => onDateToChange(e.target.value)}
             className={`${inputClasses} w-[150px]`}
-            aria-label="To date"
+            aria-label="Date de fin"
           />
         </div>
 
@@ -91,12 +91,12 @@ export function FilterBar({
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
           className={`${inputClasses} sm:w-[170px]`}
-          aria-label="Sort expenses"
+          aria-label="Trier les dépenses"
         >
-          <option value="date-desc">Newest first</option>
-          <option value="date-asc">Oldest first</option>
-          <option value="amount-desc">Amount: high to low</option>
-          <option value="amount-asc">Amount: low to high</option>
+          <option value="date-desc">Plus récentes</option>
+          <option value="date-asc">Plus anciennes</option>
+          <option value="amount-desc">Montant : décroissant</option>
+          <option value="amount-asc">Montant : croissant</option>
         </select>
       </div>
 
@@ -110,7 +110,7 @@ export function FilterBar({
               : "bg-[#f0efec] text-[#52514e] hover:bg-[#e1e0d9]"
           }`}
         >
-          All categories
+          Toutes les catégories
         </button>
         {CATEGORY_LIST.map((category) => {
           const isActive = selectedCategories.has(category);
@@ -135,7 +135,7 @@ export function FilterBar({
                 style={{ backgroundColor: meta.color }}
                 aria-hidden
               />
-              {category}
+              {meta.label}
             </button>
           );
         })}
@@ -146,7 +146,7 @@ export function FilterBar({
             onClick={onResetAll}
             className="ml-auto text-xs font-medium text-[#2a78d6] hover:underline"
           >
-            Reset filters
+            Réinitialiser les filtres
           </button>
         )}
       </div>

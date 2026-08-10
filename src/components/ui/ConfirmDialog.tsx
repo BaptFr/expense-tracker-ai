@@ -12,7 +12,7 @@ interface ConfirmDialogProps {
 export function ConfirmDialog({
   title,
   message,
-  confirmLabel = "Delete",
+  confirmLabel = "Supprimer",
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
@@ -21,7 +21,7 @@ export function ConfirmDialog({
       <p className="text-sm text-[#52514e]">{message}</p>
       <div className="mt-6 flex justify-end gap-2">
         <Button variant="secondary" onClick={onCancel}>
-          Cancel
+          Annuler
         </Button>
         <Button
           variant="danger"

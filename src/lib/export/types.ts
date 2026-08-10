@@ -18,9 +18,9 @@ export interface ExportFormatMeta {
 }
 
 export const EXPORT_FORMATS: ExportFormatMeta[] = [
-  { format: "csv", label: "CSV", extension: "csv", description: "Spreadsheet-friendly" },
-  { format: "json", label: "JSON", extension: "json", description: "Raw structured data" },
-  { format: "pdf", label: "PDF", extension: "pdf", description: "Formatted report" },
+  { format: "csv", label: "CSV", extension: "csv", description: "Idéal pour un tableur" },
+  { format: "json", label: "JSON", extension: "json", description: "Données brutes structurées" },
+  { format: "pdf", label: "PDF", extension: "pdf", description: "Rapport mis en forme" },
 ];
 
 export interface ExportWriter {

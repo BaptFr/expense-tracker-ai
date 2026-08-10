@@ -4,9 +4,9 @@ import { ShareLink } from "@/lib/cloudExport/types";
 export type ShareExpiry = "7" | "30" | "never";
 
 const EXPIRY_LABELS: Record<ShareExpiry, string> = {
-  "7": "Expires in 7 days",
-  "30": "Expires in 30 days",
-  never: "Never expires",
+  "7": "Expire dans 7 jours",
+  "30": "Expire dans 30 jours",
+  never: "N'expire jamais",
 };
 
 function randomToken(): string {
