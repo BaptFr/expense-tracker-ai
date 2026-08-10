@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PageSpinner } from "@/components/ui/Spinner";
+import { exportExpensesToCsv } from "@/lib/utils";
 import { ExpenseInput } from "@/types/expense";
 
 export default function DashboardPage() {
@@ -41,12 +42,17 @@ export default function DashboardPage() {
           <h1 className="text-xl font-semibold text-[#0b0b0b]">Dashboard</h1>
           <p className="mt-0.5 text-sm text-[#52514e]">A snapshot of your spending.</p>
         </div>
-        <Button onClick={() => setShowAddModal(true)}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-          </svg>
-          Add expense
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="secondary" onClick={() => exportExpensesToCsv(expenses)}>
+            Export Data
+          </Button>
+          <Button onClick={() => setShowAddModal(true)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+            </svg>
+            Add expense
+          </Button>
+        </div>
       </div>
 
       <SummaryCards expenses={expenses} />

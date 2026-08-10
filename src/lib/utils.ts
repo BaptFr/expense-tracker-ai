@@ -64,11 +64,11 @@ function csvEscape(value: string | number): string {
 }
 
 export function exportExpensesToCsv(expenses: Expense[]): void {
-  const header = ["Date", "Category", "Description", "Amount"];
+  const header = ["Date", "Category", "Amount", "Description"];
   const rows = expenses
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
-    .map((e) => [e.date, e.category, e.description, e.amount.toFixed(2)]);
+    .map((e) => [e.date, e.category, e.amount.toFixed(2), e.description]);
 
   const csv = [header, ...rows]
     .map((row) => row.map(csvEscape).join(","))
