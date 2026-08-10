@@ -7,6 +7,7 @@ const LINKS = [
   { href: "/", label: "Dashboard" },
   { href: "/expenses", label: "Expenses" },
   { href: "/top-categories", label: "Top Categories" },
+  { href: "/top-vendors", label: "Top Vendors" },
 ];
 
 export function NavBar() {
