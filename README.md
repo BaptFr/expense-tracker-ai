@@ -21,9 +21,9 @@ C'est un projet pour explorer comment diriger efficacement un agent de code IA a
 - Implémentations concurrentes : trois versions complètement différentes d'une même feature, développées en parallèle sur des branches séparées, puis analysées et fusionnées pour conserver ce que chacune apportait de meilleur.
 - Développement parallèle multi-agent : orchestration de plusieurs agents Claude Code indépendants via Git worktrees (branche + dossier de travail isolés) pour éviter les conflits et valider la scalabilité du workflow.
 - Sketch-to-code : interprétation directe de croquis papier photographiés pour extraire la structure avant implémentation, testant la capacité de l'IA à "lire" les intentions visuelles.
-- Localisation complète : migration exhaustive de l'interface et du contenu généré (EN→FR, USD→EUR) avec validation visuelle réelle dans le navigateur après chaque batch.
-- Commandes slash sur-mesure : capture de workflows répétables spécifiques au projet dans .claude/commands/ pour industrialiser les patterns qui fonctionnent.
-- Documentation vivante : fichier CLAUDE.md documentant les vraies conventions du code (flux de données, palette de couleurs, absence de suite de tests) pour garantir la cohérence entre les sessions IA futures.
+- Localisation complète : migration  de l'interface et du contenu avec validation visuelle réelle dans le navigateur après chaque lot.
+- Commandes sur-mesure : capture de workflows répétables spécifiques au projet dans .claude/commands/ pour industrialiser les patterns qui fonctionnent.
+- Documentation vivante : fichier CLAUDE.md documentant les conventions du code (flux de données, palette de couleurs ...) pour garantir la cohérence entre les sessions d'utilisation.
 
 ### Quel projet ?
 
