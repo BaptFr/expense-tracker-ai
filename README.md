@@ -2,7 +2,7 @@
 
 Un tracker de dépenses personnelles, 100 % côté client et pour moi une mise en pratique sur les différentes façons de **construire un produit aidé d'un agent IA (Claude Code)**.
 
-**🇫🇷 [Français](#francais) · 🇬🇧 [English](#english)**
+**[Français](#francais)  /   [English](#english)**
 
 <div align="center">
 <img src="https://i.imgur.com/pZclztw.gif" width="1000px"/>
@@ -12,7 +12,7 @@ Un tracker de dépenses personnelles, 100 % côté client et pour moi une mise e
 
 <a id="francais"></a>
 
-## 🇫🇷 Français
+## Français
 
 ### 👨‍💻​ Pourquoi ce projet ? 
 
@@ -20,18 +20,18 @@ C'est un projet pour explorer comment diriger efficacement un agent de code IA a
 
 - Implémentations concurrentes : trois versions complètement différentes d'une même feature, développées en parallèle sur des branches séparées, puis analysées et fusionnées pour conserver ce que chacune apportait de meilleur.
 - Développement parallèle multi-agent : orchestration de plusieurs agents Claude Code indépendants via Git worktrees (branche + dossier de travail isolés) pour éviter les conflits et valider la scalabilité du workflow.
-- Sketch-to-code : interprétation directe de croquis papier photographiés pour extraire la structure avant implémentation, testant la capacité de l'IA à "lire" les intentions visuelles.
+- Sketch-to-code : interprétation directe d'un croquis papier photographié et fournit à un agent pour qu'il en extrait la structure avant implémentation, testant la capacité de l'IA à "lire" des intentions visuelles d'un dessin.
 - Localisation complète : migration  de l'interface et du contenu avec validation visuelle réelle dans le navigateur après chaque lot.
 - Commandes sur-mesure : capture de workflows répétables spécifiques au projet dans .claude/commands/ pour industrialiser les patterns qui fonctionnent.
 - Documentation vivante : fichier CLAUDE.md documentant les conventions du code (flux de données, palette de couleurs ...) pour garantir la cohérence entre les sessions d'utilisation.
 
-### Quel projet ?
+### 💶​​ L'Appli 
 
 Expensely est une application Next.js qui permet de suivre ses dépenses : ajout, édition, filtres, graphiques, exports multi-formats, analyses par catégorie et par marchand. Aucune donnée ne quitte le navigateur. Tout est pour l'instant stocké dans le `localStorage`, il n'y a ni base de données, ni API. Ce n'était pour l'instant pas le but de ce développement et permet de maintenir l'app reste rapide, privée, et déployable n'importe où sans infrastructure.
 
 L'interface est entièrement en français et les montants en euros.
 
-### Fonctionnalités
+### 🖱️ Fonctionnalités
 
 - **Tableau de bord** : vue d'ensemble, tendance sur 6 mois, répartition par catégorie.
 - **Dépenses** : CRUD complet avec recherche, filtres (dates, catégories), tri.
@@ -39,8 +39,13 @@ L'interface est entièrement en français et les montants en euros.
 - **Top catégories** / **Top dépenses** : classements dérivés des mêmes données (valeurs et pourcentages), top dépenses et top catégories de dépenses.
 - **Export** - Deux façons complémentaires d'exporter : un panneau rapide (CSV / JSON / PDF, filtré) directement depuis le tableau de bord, et un **Centre d'export** dédié avec modèles prêts à l'emploi (rapport fiscal, résumé mensuel, analyse par catégorie, sauvegarde complète), envoi par e-mail, lien de partage avec QR code, synchronisation cloud et planification de sauvegardes automatiques.
 - Les intégrations cloud (Google Sheets, Dropbox, OneDrive) et l'envoi d'e-mail sont **simulées et explicitement annoncées comme telles**  en haut dans l'interface ( pour l'instant pas de service tiers réellement contacté).
+  
+### 🤖​ Comment ça a été construit - la partie IA
 
-### Comment ça a été construit - la partie IA
+
+<div align="center">
+<img src="https://cleverhack.com/img/clawd.gif"/>
+</div>
 
 Quelques étapes notables de la construction de ce projet à l'aide de Claude Code :
 
@@ -57,7 +62,7 @@ Quelques étapes notables de la construction de ce projet à l'aide de Claude Co
 
 <a id="english"></a>
 
-## 🇬🇧 English
+## English
 
 ### 👨‍💻​ Why this project?
 
@@ -72,13 +77,13 @@ This is a project to explore how to effectively direct an autonomous AI code age
 
 At each step, work is verified for real: typecheck, lint, build, and actual browser passes driven end-to-end (not just compilation).
 
-### What is this?
+### 💶​ What is this?
 
 Expensely is a Next.js application that lets you track expenses: add, edit, filter, visualize with charts, export in multiple formats, and analyze by category and vendor. No data ever leaves the browser. Everything is currently stored in `localStorage` — there's no database and no API. This wasn't the goal of this development effort, and it keeps the app fast, private, and deployable anywhere without infrastructure.
 
 The interface is entirely in French and amounts are in euros.
 
-### Features
+### 🖱️ Features
 
 - **Dashboard**: snapshot view, 6-month trend, category breakdown.
 - **Expenses**: full CRUD with search, filters (date range, categories), sorting.
@@ -87,7 +92,12 @@ The interface is entirely in French and amounts are in euros.
 - **Export**: two complementary ways to get your data out: a quick filtered panel (CSV / JSON / PDF) right from the dashboard, and a dedicated **Export Center** with ready-made templates (tax report, monthly summary, category analysis, full backup), email delivery, shareable link with QR code, cloud sync, and scheduled automatic backups.
 - Cloud integrations (Google Sheets, Dropbox, OneDrive) and email sending are **simulated and explicitly labeled as such** at the top of the interface (no third-party service actually contacted for now).
 
-### How it was built — the AI story
+### 🤖​ How it was built — the AI story
+
+
+<div align="center">
+<img src="https://cleverhack.com/img/clawd.gif"/>
+</div>
 
 A few notable steps from building this project with Claude Code:
 
