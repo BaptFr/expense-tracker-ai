@@ -63,12 +63,12 @@ export function SpendingDonutChart({ segments, centerLabel, size = 200 }: Spendi
   const outerR = size / 2;
   const innerR = outerR * 0.62;
 
-  let cursor = 0;
-  const slices = segments.map((segment) => {
+  const slices = segments.map((segment, i) => {
     const sweep = total > 0 ? (segment.value / total) * 360 : 0;
+    const before = segments.slice(0, i).reduce((sum, s) => sum + s.value, 0);
+    const cursor = total > 0 ? (before / total) * 360 : 0;
     const start = cursor + GAP_DEGREES / 2;
     const end = cursor + sweep - GAP_DEGREES / 2;
-    cursor += sweep;
     return { ...segment, start: Math.min(start, end), end: Math.max(start, end), sweep };
   });
 
