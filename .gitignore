@@ -1,5 +1,6 @@
-﻿node_modules/
+node_modules/
 .next/
+out/
 .env
 .env.local
 .env.development.local
@@ -12,7 +13,10 @@
 .idea/
 dist/
 build/
-settings.json
-settings.json.local
+*.tsbuildinfo
 
+# Claude Code local config / working notes (machine paths, permissions)
+.claude/settings.json
+.claude/settings.local.json
 .claude/scheduled_tasks.lock
+*.work.txt
