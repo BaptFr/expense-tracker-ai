@@ -1,6 +1,6 @@
 # 💶 Expensely
 <h2 align="center"> <a href="https://baptfr.github.io/expense-tracker-ai/"> 👉 Accéder au site 👈 </a>  </h2>
-Un tracker de dépenses personnelles, 100 % côté client et pour moi une mise en pratique sur les différentes façons de **construire un produit aidé d'un agent IA (Claude Code)**.
+Un tracker de dépenses personnelles, 100 % côté client et pour moi une mise en pratique sur les différentes façons de construire un produit aidé d'un agent IA (Claude Code).
 
 **[Français](#francais)  /   [English](#english)**
 
